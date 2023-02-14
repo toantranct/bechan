@@ -3,6 +3,15 @@ const animationTimeline = () => {
   // Spit chars that needs to be animated individually
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
+  const iframeAudio = document.getElementById("iframeAudio");
+  const sourceAudio = document.getElementById("sourceAudio");
+  // random Music
+  let music = ['euphoria.mp3', 'tinhnaycoem.mp3', 'tinhyeuchamtre.mp3'];
+  let index = Math.floor(Math.random() * 3); // random [0,2]
+  let srcMP3 = music[index];
+  iframeAudio.src = "audio/" + srcMP3;
+  sourceAudio.src = "audio/" + srcMP3;
+
 
   textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
     .split("")
@@ -309,3 +318,8 @@ const resolveFetch = () => {
 };
 
 resolveFetch().then(animationTimeline());
+
+var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    if(!isChrome){
+      $('#iframeAudio').remove()
+  }
